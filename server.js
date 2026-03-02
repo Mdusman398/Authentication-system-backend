@@ -20,7 +20,10 @@ app.use("/api", userRouter)
 app.get("/", (req,res) => {
     res.send({message: "hello world"})
 })
-app.listen(PORT, ()=>{
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
     console.log(`server is running on http://localhost:${PORT}`);
-    
-})
+  });
+}
+
+export default app;
