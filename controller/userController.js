@@ -36,7 +36,7 @@ export const signUp = async (req, res) => {
     newUser.token = token;
     await newUser.save();
 
-  const verifyLink = `http://localhost:5173/verify/${token}`;
+  const verifyLink = `https://authentication-system-frontend-phi.vercel.app/${token}`;
 
    await verifyMail(token, email);
 
@@ -156,15 +156,15 @@ export const login = async (req, res) => {
 
   res.cookie("accessToken", accessToken, {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "None",
     maxAge: 15 * 60 * 1000
   });
 
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "None",
     maxAge: 30 * 24 * 60 * 60 * 1000
   });
 
